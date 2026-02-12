@@ -9,7 +9,7 @@ const Contacts = () => {
           <h1 className="text-2xl font-bold">Contact Information</h1>
         </div>
         <div className="mt-6 space-y-6">
-          <div className="w-1/2 mx-auto text-center">
+          <div className="mx-auto text-justify sm:text-justify md:text-center lg:text-center xl:text-center max-w-4xl px-4 sm:px-4 md:px-0 lg:px-0 xl:px-0">
             <p>
               Greetings! Thank you for exploring my portfolio. If you have any
               inquiries, collaboration proposals, or simply wish to connect,
