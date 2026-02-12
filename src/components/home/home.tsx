@@ -1,9 +1,30 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
+gsap.registerPlugin(useGSAP);
 export default function Home() {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".box", {
+        opacity: 0,
+        y: -250,
+        duration: 2.5,
+        stagger: 0.5,
+        ease: "expo.out",
+      });
+    },
+    { scope: container },
+  );
+
   return (
-    <div className="container mx-auto">
+    <div ref={container} className="container mx-auto">
       <div className="text-center flex h-screen">
         <div className="m-auto space-y-6">
           <div className="flex justify-center">
@@ -11,17 +32,17 @@ export default function Home() {
               src="/images/profile-pic.jpeg"
               width={500}
               height={500}
-              className="size-72 rounded-full transition-all"
+              className="size-72 box rounded-full transition-all"
               alt="Picture of the Developer"
             />
           </div>
-          <div>
+          <div className="box">
             <h1 className="text-2xl font-bold transition-all">
               Alexie Simangan Tuzon
             </h1>
-            <span className="text-sm">Web Developer</span>
+            <span className="text-md box">Web Developer</span>
           </div>
-          <div className="flex justify-center space-x-4">
+          <div className="flex box justify-center space-x-4">
             <Link
               href="https://github.com/d3vmod3"
               className="hover:bg-accent rounded-md p-2 transition-all"
