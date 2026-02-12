@@ -56,6 +56,7 @@ const Navbar = () => {
           <Link className="hover:text-primary max-md:hidden" href="/contacts">
             Contacts
           </Link>
+          <ModeToggle />
         </div>
 
         <div className="flex sm:flex md:flex lg:hidden xl:hidden items-center gap-6">
