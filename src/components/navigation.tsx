@@ -1,81 +1,85 @@
 "use client";
-
+import { MenuIcon, SearchIcon } from "lucide-react";
 import * as React from "react";
 import Link from "next/link";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-
 import { ModeToggle } from "@/components/mode-toggle";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-export default function Nav() {
-  return (
-    <NavigationMenu className="container mx-auto mb-4 mt-2">
-      <NavigationMenuList>
-        {/* <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="w-96">
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built with Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/">Home</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/portfolio">Portfolio</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/about">About</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/contacts">Contacts</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <ModeToggle />
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
-  );
-}
+// import Logo from "/images/logo.svg";
 
-function ListItem({
-  title,
-  children,
-  href,
-  ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+const navigationData = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Portfolio",
+    href: "/portfolio",
+  },
+  {
+    title: "About",
+    href: "/about",
+  },
+  {
+    title: "Contacts",
+    href: "/contacts",
+  },
+];
+
+const Navbar = () => {
   return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link href={href}>
-          <div className="flex flex-col gap-1 text-sm">
-            <div className="leading-none font-medium">{title}</div>
-            <div className="text-muted-foreground line-clamp-2">{children}</div>
-          </div>
+    <header className="bg-background sticky top-0 z-50 border">
+      <div className="w-full mx-auto px-4 py-7 flex items-center justify-between gap-8 container">
+        <Link
+          className="hover:text-primary max-md:hidden text-xl font-bold"
+          href="/"
+        >
+          Alexie Tuzon
         </Link>
-      </NavigationMenuLink>
-    </li>
+        <div className="text-muted-foreground flex items-center gap-8 font-medium md:justify-center lg:gap-16">
+          <Link className="hover:text-primary max-md:hidden" href="/">
+            Home
+          </Link>
+          <Link className="hover:text-primary max-md:hidden" href="/portfolio">
+            Portfolio
+          </Link>
+          <Link className="hover:text-primary max-md:hidden" href="/about">
+            About
+          </Link>
+          <Link className="hover:text-primary max-md:hidden" href="/contacts">
+            Contacts
+          </Link>
+        </div>
+
+        <div className="flex sm:flex md:flex lg:hidden xl:hidden items-center gap-6">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="md:hidden" asChild>
+              <Button variant="outline" size="icon">
+                <MenuIcon />
+                <span className="sr-only">Menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56" align="end">
+              <DropdownMenuGroup>
+                {navigationData.map((item, index) => (
+                  <DropdownMenuItem key={index}>
+                    <Link href={item.href}>{item.title}</Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+    </header>
   );
-}
+};
+
+export default Navbar;
