@@ -46,7 +46,9 @@ const Portfolio = () => {
               </CardContent>
               <CardFooter className="justify-end">
                 <Button asChild className="mt-6 w-full sm:w-full lg:w-auto">
-                  <Link href="./portfolio/forexcargo">View</Link>
+                  <Link href="./portfolio/forexcargo" target="_blank">
+                    View
+                  </Link>
                 </Button>
               </CardFooter>
             </Card>
@@ -78,7 +80,7 @@ const Portfolio = () => {
               <CardHeader>
                 <CardTitle>
                   Living Pianos{" "}
-                  <span className="text-xs italic">(under development)</span>
+                  <span className="text-xs italic">(Archived)</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -104,7 +106,9 @@ const Portfolio = () => {
             {/* Love PH */}
             <Card className="opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
               <CardHeader>
-                <CardTitle>Love PH</CardTitle>
+                <CardTitle>
+                  Love PH <span className="text-xs italic">(Archived)</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p>
@@ -131,7 +135,7 @@ const Portfolio = () => {
               <CardHeader>
                 <CardTitle>
                   RONLapor - CMS{" "}
-                  <span className="text-xs italic">(under development)</span>
+                  <span className="text-xs italic">(Archived)</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
