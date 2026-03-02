@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardHeader,
@@ -7,187 +9,126 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+
+const projects = [
+  {
+    title: "Forex Cargo US",
+    subtitle: "Enhanced",
+    tools: ["Codeigniter"],
+    href: "./portfolio/forexcargo",
+  },
+  {
+    title: "Golden Press",
+    tools: ["Wordpress"],
+    href: "./portfolio/goldenpress",
+  },
+  {
+    title: "Living Pianos",
+    subtitle: "Archived",
+    tools: ["Docker", "Next.js"],
+    href: "./portfolio/living-pianos",
+  },
+  {
+    title: "Love PH",
+    subtitle: "Archived",
+    tools: ["Next.js"],
+    href: "https://book.philippines-hoho.ph/",
+  },
+  {
+    title: "RONLapor - CMS",
+    subtitle: "Archived",
+    tools: ["Docker", "Laravel", "Livewire", "MySQL"],
+    href: "./portfolio/ronlapor",
+  },
+  {
+    title: "Soros Security Consulting",
+    tools: ["Docker", "Next.js"],
+    href: "https://sorosservices.com/",
+  },
+];
 
 const Portfolio = () => {
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    if (!cardsRef.current) return;
+
+    // Simple fade-in one by one
+    gsap.from(cardsRef.current, {
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2, // one after the other
+      ease: "power2.out",
+    });
+  }, []);
+
   return (
-    <div className="container mx-auto p-2">
-      <div>
-        <div className="text-center">
-          <h1 className="text-2xl font-bold">Portfolio</h1>
+    <div
+      className="min-h-screen py-10 px-4 flex flex-col items-center
+                    bg-gradient-to-br from-white via-gray-200 to-gray-400
+                    dark:from-black dark:via-gray-800 dark:to-gray-900"
+    >
+      <div className="text-center mb-8">
+        <h1
+          className="text-4xl md:text-5xl font-extrabold
+                       bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
+                       dark:from-gray-300 dark:via-white dark:to-gray-200
+                       bg-clip-text text-transparent drop-shadow-md"
+        >
+          Portfolio
+        </h1>
+        <div className="mt-4 max-w-2xl mx-auto bg-white/10 dark:bg-black/20 backdrop-blur-md rounded-xl p-6 shadow-lg">
+          <p className="text-gray-800 dark:text-gray-200 text-lg md:text-xl">
+            Hello and welcome! Here, you&apos;ll find a curated selection of my
+            work, showcasing my passion and creativity.
+          </p>
         </div>
-        <div className="mt-6 space-y-6">
-          <div className="w-full sm:w-full md:w-full lg:w-1/2 xl:w-1/2 mx-auto text-center space-y-6">
-            <div className="p-2">
-              <p>
-                Hello and welcome! Here, you&apos;ll find a curated selection of
-                my work, a testament to my passion and creativity. Each piece
-                represents a unique journey, from inception to completion,
-                showcasing my dedication to craft and innovation.
-              </p>
-            </div>
-          </div>
+      </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-            {/* Forex Cargo US */}
-            <Card className="opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <CardHeader>
-                <CardTitle>
-                  Forex Cargo US{" "}
-                  <span className="text-xs italic">(Enhanced)</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Tools/Framework:{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Codeigniter
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl">
+        {projects.map((project, idx) => (
+          <Card
+            key={idx}
+            ref={(el) => {
+              if (el) cardsRef.current[idx] = el;
+            }}
+            className="opacity-90 hover:opacity-100 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 transition-transform duration-500 hover:scale-105 shadow-lg"
+          >
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between">
+                {project.title}
+                {project.subtitle && (
+                  <span className="text-xs italic text-gray-500 dark:text-gray-400">
+                    ({project.subtitle})
                   </span>
-                </p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <Button asChild className="mt-6 w-full sm:w-full lg:w-auto">
-                  <Link href="./portfolio/forexcargo" target="_blank">
-                    View
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Golden Press */}
-            <Card className="opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <CardHeader>
-                <CardTitle>Golden Press</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Tools/Framework:{" "}
-                  <span className="font-bold border rounded-md p-1">
-                    Wordpress
-                  </span>
-                </p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <Button asChild className="mt-6 w-full sm:w-full lg:w-auto">
-                  <Link href="./portfolio/goldenpress" target="_blank">
-                    View
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Living Pianos */}
-            <Card className="opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <CardHeader>
-                <CardTitle>
-                  Living Pianos{" "}
-                  <span className="text-xs italic">(Archived)</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Tools/Framework:{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Docker
-                  </span>{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Next JS
-                  </span>
-                </p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <Button asChild className="mt-6 w-full sm:w-full lg:w-auto">
-                  <Link href="./portfolio/living-pianos" target="_blank">
-                    View
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Love PH */}
-            <Card className="opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <CardHeader>
-                <CardTitle>
-                  Love PH <span className="text-xs italic">(Archived)</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Tools/Framework:{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Next JS
-                  </span>
-                </p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <Button asChild className="mt-6 w-full sm:w-full lg:w-auto">
-                  <Link
-                    href="https://book.philippines-hoho.ph/"
-                    target="_blank"
+                )}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <p className="font-medium">Tools / Framework:</p>
+              <div className="flex flex-wrap gap-2">
+                {project.tools.map((tool, tIdx) => (
+                  <span
+                    key={tIdx}
+                    className="text-xs font-semibold border rounded-full px-2 py-1 bg-white/20 dark:bg-gray-700/30"
                   >
-                    View
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* RONLapor - CMS */}
-            <Card className="opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <CardHeader>
-                <CardTitle>
-                  RONLapor - CMS{" "}
-                  <span className="text-xs italic">(Archived)</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Tools/Framework:{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Docker
-                  </span>{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Laravel
-                  </span>{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Livewire
-                  </span>{" "}
-                  <span className="font-bold rounded-md border p-1">MySQL</span>
-                </p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <Button asChild className="mt-6 w-full sm:w-full lg:w-auto">
-                  <Link href="./portfolio/ronlapor" target="_blank">
-                    View
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Soros Security Consulting */}
-            <Card className="opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <CardHeader>
-                <CardTitle>Soros Security Consulting</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Tools/Framework:{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Docker
-                  </span>{" "}
-                  <span className="font-bold rounded-md border p-1">
-                    Next JS
+                    {tool}
                   </span>
-                </p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <Button asChild className="mt-6 w-full sm:w-full lg:w-auto">
-                  <Link href="https://sorosservices.com/" target="_blank">
-                    View
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
+                ))}
+              </div>
+            </CardContent>
+            <CardFooter className="justify-center">
+              <Button asChild className="w-full sm:w-auto mt-2">
+                <Link href={project.href} target="_blank">
+                  View
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
       </div>
     </div>
   );
