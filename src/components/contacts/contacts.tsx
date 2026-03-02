@@ -49,7 +49,8 @@ const contactCards = [
   },
   {
     label: "Address",
-    value: "8976 San Felipe, San Isidro, Parañaque City, Metro Manila",
+    value:
+      "Gonzaga Street Extension, Ugac Norte, Tuguegarao City, Cagayan 3500",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
