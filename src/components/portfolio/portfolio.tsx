@@ -53,15 +53,17 @@ const Portfolio = () => {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    if (!cardsRef.current) return;
+    const ctx = gsap.context(() => {
+      if (!cardsRef.current) return;
 
-    // Simple fade-in one by one
-    gsap.from(cardsRef.current, {
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2, // one after the other
-      ease: "power2.out",
+      gsap.from(cardsRef.current, {
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+      });
     });
+
+    return () => ctx.revert(); // clean up on unmount
   }, []);
 
   return (

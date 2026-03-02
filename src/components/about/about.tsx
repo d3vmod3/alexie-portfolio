@@ -1,162 +1,158 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useMemo } from "react";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+
+const infoCards = [
+  {
+    label: "Full Name",
+    value: "Alexie Simangan Tuzon",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-12 h-12"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: "Gender",
+    value: "Male",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-12 h-12"
+      >
+        <path
+          fillRule="evenodd"
+          d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: "Birthdate",
+    value: "July 11, 1996",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-12 h-12"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: "Highest Level of Education",
+    value: "BSc in Information Technology, St. Paul University Philippines",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-12 h-12"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347"
+        />
+      </svg>
+    ),
+  },
+];
 
 const About = () => {
-  const [birthdate, setBirthdate] = useState("1996-07-11");
+  const cardsRef = useRef<HTMLDivElement[]>([]);
 
-  const age = useMemo(() => {
-    const today = new Date();
-    const birthDate = new Date(birthdate);
-
-    if (isNaN(birthDate.getTime())) return null;
-
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDifference = today.getMonth() - birthDate.getMonth();
-
-    if (
-      monthDifference < 0 ||
-      (monthDifference === 0 && today.getDate() < birthDate.getDate())
-    ) {
-      age--;
-    }
-
-    return age;
-  }, [birthdate]);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(cardsRef.current, {
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "bounce.out",
+      });
+    });
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div className="container mx-auto p-2">
-      <div>
-        <div className="text-center">
-          <h1 className="text-2xl font-bold">Basic Information</h1>
+    <div
+      className="min-h-screen py-10 px-4 flex flex-col items-center
+                 bg-gradient-to-br from-white via-gray-200 to-gray-400
+                 dark:from-black dark:via-gray-800 dark:to-gray-900"
+    >
+      <div className="text-center mb-8">
+        <h1
+          className="text-4xl md:text-5xl font-extrabold
+                     bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
+                     dark:from-gray-300 dark:via-white dark:to-gray-200
+                     bg-clip-text text-transparent drop-shadow-md"
+        >
+          About Me
+        </h1>
+        <div className="mt-4 max-w-2xl mx-auto bg-white/10 dark:bg-black/20 backdrop-blur-md rounded-xl p-6 shadow-lg">
+          <p className="text-gray-800 dark:text-gray-200 text-lg md:text-xl">
+            Experienced IT Programmer with a strong background in web and
+            software development. Skilled in creating solutions with both
+            creativity and precision.
+          </p>
         </div>
-        <div className="mt-6 space-y-6">
-          <div className="w-full sm:w-full md:w-full lg:w-1/2 xl:w-1/2 mx-auto text-center space-y-6">
-            <div className="flex justify-center">
-              <Image
-                src="/images/profile-pic.jpeg"
-                alt=""
-                width={100}
-                height={100}
-                className="size-72 rounded-full transition-all"
-              />
-            </div>
-            <div className="px-2">
-              <p>
-                Experienced Information Technology Programmer with a
-                demonstrated history of working in the computer software
-                industry. Skilled in Software System Analysis, HTML,
-                Programming, Software Development, and Web Services. Strong
-                engineering professional and a good team player.
-              </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
-            <div className="w-full opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <div className="flex h-full justify-between items-center border rounded-lg p-4">
-                <div className="space-y-2">
-                  <h2>Full Name</h2>
-                  <p>Alexie Simangan Tuzon</p>
-                </div>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-12 h-12"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className="w-full opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <div className="flex h-full justify-between items-center border rounded-lg p-4">
-                <div className="space-y-2">
-                  <h2>Gender</h2>
-                  <p>Male</p>
-                </div>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-12 h-12"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className="w-full opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <div className="flex h-full justify-between items-center border rounded-lg p-4">
-                <div className="space-y-2">
-                  <h2>Birthdate</h2>
-                  <p>
-                    July 11, 1996 (
-                    {age !== null ? `${age} years old` : "Years Old"}) years
-                    old)
-                  </p>
-                </div>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-12 h-12"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className="w-full opacity-80 hover:opacity-100 bg-neutral text-neutral-content">
-              <div className="flex h-full justify-between items-center border rounded-lg p-4">
-                <div className="space-y-2">
-                  <h2>Highest level of education</h2>
-                  <p>Bachelor of Science in Information Technology</p>
-                  <span className="text-sm">
-                    St. Paul University Philippines (S.Y. 2012-2016)
-                  </span>
-                </div>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-12 h-"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="mt-6 flex justify-center">
+          <Image
+            src="/images/profile-pic.jpeg"
+            width={150}
+            height={150}
+            alt="Profile Picture"
+            className="rounded-full object-cover shadow-lg"
+          />
         </div>
+      </div>
+
+      {/* Info Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 w-full max-w-5xl">
+        {infoCards.map((info, idx) => (
+          <Card
+            key={idx}
+            ref={(el) => {
+              if (el && !cardsRef.current.includes(el))
+                cardsRef.current.push(el);
+            }}
+            className="flex justify-between items-center p-4 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 hover:scale-105 transition-transform duration-300"
+          >
+            <div className="text-center">
+              <h2 className="font-semibold">{info.label}</h2>
+              <p>{info.value}</p>
+            </div>
+            <div>{info.icon}</div>
+          </Card>
+        ))}
       </div>
     </div>
   );

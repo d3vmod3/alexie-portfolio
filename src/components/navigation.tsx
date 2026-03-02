@@ -1,5 +1,5 @@
 "use client";
-import { MenuIcon, SearchIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import * as React from "react";
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
