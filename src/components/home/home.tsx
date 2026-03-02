@@ -5,74 +5,168 @@ import Link from "next/link";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { TextPlugin } from "gsap/TextPlugin";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, TextPlugin);
+
+const techStack = [
+  "Bootstrap",
+  "CI/CD",
+  "CSS3",
+  "Docker",
+  "Figma",
+  "Git",
+  "GSAP",
+  "HTML5",
+  "JavaScript",
+  "Laravel",
+  "Livewire",
+  "Next.js",
+  "PostgreSQL",
+  "TailwindCSS",
+  "TypeScript",
+  "Vue JS",
+  "Wordpress",
+];
+
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
+  const textbox = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const cursorRef = useRef<HTMLSpanElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const marqueeRefs = useRef<HTMLDivElement[]>([]);
+
+  const quotes = [
+    "&lt;p&gt;I build websites that people love to use.&lt;/p&gt;",
+    "&lt;p&gt;Web development is where creativity meets logic.&lt;/p&gt;",
+    "&lt;p&gt;Every line of code is a step toward something bigger.&lt;/p&gt;",
+    "&lt;p&gt;Simplicity is the soul of efficiency.&lt;/p&gt;",
+    "&lt;p&gt;I craft digital experiences, not just websites.&lt;/p&gt;",
+  ];
 
   useGSAP(
     () => {
-      gsap.from(".box", {
+      if (!textRef.current || !cursorRef.current || !cardRef.current) return;
+
+      // Fade in card
+      gsap.from([cardRef.current, textbox.current], {
         opacity: 0,
-        y: -250,
-        duration: 2.5,
-        stagger: 0.5,
-        ease: "expo.out",
+        y: 50,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "power3.out",
+      });
+
+      // Floating profile card
+      gsap.to(cardRef.current, {
+        y: -15,
+        rotate: 3,
+        repeat: -1,
+        yoyo: true,
+        duration: 3,
+        ease: "sine.inOut",
+      });
+
+      // Blinking cursor
+      gsap.fromTo(
+        cursorRef.current,
+        { autoAlpha: 0 },
+        { autoAlpha: 1, repeat: -1, yoyo: true, duration: 0.5 },
+      );
+
+      // Typewriter animation
+      const tl = gsap.timeline({ repeat: -1 });
+      quotes.forEach((quote) => {
+        tl.to(textRef.current, { duration: 3, text: quote, ease: "none" }).to(
+          textRef.current,
+          { duration: 0.5, text: "", delay: 1 },
+        );
+      });
+
+      // Infinite marquee animation
+      marqueeRefs.current.forEach((el, i) => {
+        const isLeft = i % 2 === 0;
+        const startX = isLeft ? 0 : -el.scrollWidth / 2;
+        const endX = isLeft ? -el.scrollWidth / 2 : 0;
+
+        gsap.fromTo(
+          el,
+          { x: startX },
+          { x: endX, repeat: -1, ease: "linear", duration: 50 + i * 3 },
+        );
       });
     },
     { scope: container },
   );
 
   return (
-    <div ref={container} className="container mx-auto">
-      <div className="text-center flex h-screen">
-        <div className="m-auto space-y-6">
-          <div className="flex justify-center">
-            <Image
-              src="/images/profile-pic.jpeg"
-              width={500}
-              height={500}
-              className="size-72 box rounded-full transition-all"
-              alt="Picture of the Developer"
-            />
+    <div
+      ref={container}
+      className="relative min-h-screen flex justify-center items-center overflow-hidden
+                 bg-gradient-to-br from-white via-gray-200 to-gray-400
+                 dark:from-black dark:via-gray-800 dark:to-gray-900"
+    >
+      {/* Tech Marquee: 7 rows */}
+      <div className="absolute inset-0 flex flex-col justify-around space-y-4 overflow-hidden pointer-events-none z-0">
+        {[0, 1, 2, 3, 4, 5, 6].map((row) => (
+          <div
+            key={row}
+            ref={(el) => {
+              if (el) marqueeRefs.current[row] = el;
+            }}
+            className={`flex space-x-12 whitespace-nowrap font-bold select-none
+                        text-gray-700/20 dark:text-gray-500/20
+                        ${row % 3 === 0 ? "text-xl md:text-3xl" : row % 3 === 1 ? "text-2xl md:text-4xl" : "text-lg md:text-2xl"}`}
+          >
+            {[...techStack, ...techStack].map((tech, i) => (
+              <span key={i}>{tech}</span>
+            ))}
           </div>
-          <div className="box">
-            <h1 className="text-2xl font-bold transition-all">
-              Alexie Simangan Tuzon
-            </h1>
-            <span className="text-md box">Web Developer</span>
+        ))}
+      </div>
+
+      {/* Foreground Content */}
+      <div className="relative z-10 flex flex-col md:flex-row items-center space-x-8">
+        {/* Left text */}
+        <div className="flex flex-col text-left space-y-4">
+          <h1
+            className="text-5xl md:text-6xl font-extrabold 
+                         bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
+                         dark:from-gray-300 dark:via-white dark:to-gray-200
+                         bg-clip-text text-transparent drop-shadow-md"
+          >
+            Alexie Simangan Tuzon
+          </h1>
+
+          <div
+            ref={textbox}
+            className="relative bg-white/10 dark:bg-black/20 backdrop-blur-md rounded-xl p-4 shadow-lg"
+          >
+            <p className="text-xl md:text-2xl text-black dark:text-gray-300 italic flex items-center">
+              <span ref={textRef} className="mr-2"></span>
+              <span ref={cursorRef}>|</span>
+            </p>
           </div>
-          <div className="flex box justify-center space-x-4">
-            <Link
-              href="https://github.com/d3vmod3"
-              className="hover:bg-accent rounded-md p-2 transition-all"
-              target="_blank"
-            >
-              <span className="[&>svg]:h-12 [&>svg]:w-12">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 496 512"
-                >
-                  <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-                </svg>
-              </span>
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/alexie-tuzon-4a2844103/"
-              className="hover:bg-accent rounded-md p-2 transition-all"
-              target="_blank"
-            >
-              <span className="[&>svg]:h-12 [&>svg]:w-12">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
-                </svg>
-              </span>
-            </Link>
+        </div>
+
+        {/* Profile Card */}
+        <div
+          ref={cardRef}
+          className="relative w-72 h-96 md:w-96 md:h-[500px] bg-white/10 dark:bg-black/20 rounded-2xl backdrop-blur-lg shadow-2xl 
+                     overflow-hidden transition-all duration-500 hover:w-96 hover:h-[600px] md:hover:w-[400px] md:hover:h-[650px]"
+        >
+          <Image
+            src="/images/profile-pic-3.jpg"
+            width={384}
+            height={500}
+            alt="Profile"
+            className="object-cover w-full h-full rounded-2xl"
+          />
+          <div className="absolute bottom-0 left-0 w-full backdrop-blur-sm p-4 rounded-b-2xl">
+            <p className="text-white dark:text-gray-200 text-lg md:text-xl font-semibold">
+              Full-Stack Web Developer
+            </p>
           </div>
         </div>
       </div>
