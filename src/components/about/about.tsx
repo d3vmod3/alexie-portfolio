@@ -148,7 +148,7 @@ const About = () => {
               if (el && !cardsRef.current.includes(el))
                 cardsRef.current.push(el);
             }}
-            className="flex justify-between items-center p-4 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 hover:scale-105 transition-transform duration-300"
+            className="flex justify-between backdrop-blur-md items-center p-4 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 hover:scale-105 transition-transform duration-300"
           >
             <div className="text-center">
               <h2 className="font-semibold">{info.label}</h2>
