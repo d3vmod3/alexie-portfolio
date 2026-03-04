@@ -124,7 +124,7 @@ const About = () => {
             creativity and precision.
           </p>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-6">
           <div className="bg-white/10 dark:bg-black/20 rounded-full backdrop-blur-lg shadow-2xl overflow-hidden w-48 h-48 md:w-54 md:h-54">
             <Image
               src="/images/profile-pic-3.jpg"
