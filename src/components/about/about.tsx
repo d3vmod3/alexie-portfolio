@@ -124,14 +124,16 @@ const About = () => {
             creativity and precision.
           </p>
         </div>
-        <div className="mt-6 flex justify-center">
-          <Image
-            src="/images/profile-pic.jpeg"
-            width={150}
-            height={150}
-            alt="Profile Picture"
-            className="rounded-full object-cover shadow-lg"
-          />
+        <div className="flex justify-center">
+          <div className="bg-white/10 dark:bg-black/20 rounded-full backdrop-blur-lg shadow-2xl overflow-hidden w-48 h-48 md:w-54 md:h-54">
+            <Image
+              src="/images/profile-pic-3.jpg"
+              width={200}
+              height={200}
+              alt="Profile Picture"
+              className="object-cover w-full h-full rounded-full hover:w-[100px] hover:h-[100px] md:hover:w-[500px] md:hover:h-[500px] transition-all duration-500"
+            />
+          </div>
         </div>
       </div>
 

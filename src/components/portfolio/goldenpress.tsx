@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogTrigger,
@@ -6,6 +8,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import Image from "next/image";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
 
 const screenshots = [
   {
@@ -19,60 +23,101 @@ const screenshots = [
 ];
 
 const GoldenPress = () => {
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(cardsRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
+  const handleHover = (idx: number, enter: boolean) => {
+    gsap.to(cardsRef.current[idx], {
+      scale: enter ? 1.05 : 1,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+
   return (
-    <div className="container mx-auto p-2">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">Goldenpress</h1>
-        <span>A company specialized in high-quality printing solutions</span>
+    <div
+      className="min-h-screen py-10 px-4 flex flex-col items-center
+                 bg-gradient-to-br from-white via-gray-200 to-gray-400
+                 dark:from-black dark:via-gray-800 dark:to-gray-900"
+    >
+      <div className="text-center mb-8">
+        <h1
+          className="text-4xl md:text-5xl font-extrabold
+                     bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
+                     dark:from-gray-300 dark:via-white dark:to-gray-200
+                     bg-clip-text text-transparent drop-shadow-md"
+        >
+          GoldenPress
+        </h1>
+        <span className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
+          A company specialized in high-quality printing solutions
+        </span>
+
+        {/* Tools Badge */}
+        <div className="mt-4 flex justify-center flex-wrap gap-2">
+          <span className="font-bold rounded-md border px-2 py-1 bg-white/20 dark:bg-black/20 text-gray-800 dark:text-gray-200">
+            Wordpress
+          </span>
+        </div>
       </div>
 
-      <div className="mt-6 space-y-6">
-        <div className="w-1/2 mx-auto text-center space-x-2">
-          <span className="font-bold rounded-md border p-1">Wordpress</span>
-        </div>
+      {/* Screenshots Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-5xl">
+        {screenshots.map((item, idx) => (
+          <div
+            key={idx}
+            ref={(el) => {
+              if (el) cardsRef.current[idx] = el;
+            }}
+            className="card-item opacity-90 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 rounded-lg shadow-lg p-4"
+            onMouseEnter={() => handleHover(idx, true)}
+            onMouseLeave={() => handleHover(idx, false)}
+          >
+            <h2 className="text-center font-semibold">{item.title}</h2>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
-          {screenshots.map((item, idx) => (
-            <div
-              key={idx}
-              className="border p-4 rounded-lg w-full opacity-80 hover:opacity-100 bg-neutral text-neutral-content"
-            >
-              <div className="space-y-2">
-                <h2>{item.title}</h2>
-
-                <Dialog>
-                  <DialogTrigger className="w-full">
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      width={item.title === "Mobile View" ? 300 : 1000}
-                      height={item.title === "Mobile View" ? 300 : 1000}
-                      className="hover:cursor-pointer mt-2 mx-auto"
-                    />
-                  </DialogTrigger>
-                  <DialogContent
-                    className={
-                      item.title === "Mobile View"
-                        ? "sm:max-w-md h-screen"
-                        : "sm:max-w-7xl"
-                    }
-                  >
-                    <DialogHeader>
-                      <DialogTitle>{item.title}</DialogTitle>
-                    </DialogHeader>
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      width={item.title === "Mobile View" ? 300 : 1000}
-                      height={item.title === "Mobile View" ? 300 : 1000}
-                      className="w-full"
-                    />
-                  </DialogContent>
-                </Dialog>
-              </div>
-            </div>
-          ))}
-        </div>
+            <Dialog>
+              <DialogTrigger className="w-full mt-2 flex justify-center">
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  width={item.title === "Mobile View" ? 300 : 1000}
+                  height={item.title === "Mobile View" ? 300 : 1000}
+                  className="hover:cursor-pointer rounded-lg"
+                />
+              </DialogTrigger>
+              <DialogContent
+                className={
+                  item.title === "Mobile View"
+                    ? "sm:max-w-md h-screen"
+                    : "sm:max-w-7xl"
+                }
+              >
+                <DialogHeader>
+                  <DialogTitle>{item.title}</DialogTitle>
+                </DialogHeader>
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  width={item.title === "Mobile View" ? 300 : 1000}
+                  height={item.title === "Mobile View" ? 300 : 1000}
+                  className="w-full rounded-lg"
+                />
+              </DialogContent>
+            </Dialog>
+          </div>
+        ))}
       </div>
     </div>
   );
