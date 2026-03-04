@@ -4,8 +4,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { TextPlugin } from "gsap/TextPlugin";
+import MarqueTechStack from "@/components/ui/marquee-tech-stack";
 import { Card } from "@/components/ui/card";
 
+gsap.registerPlugin(useGSAP, TextPlugin);
 const contactCards = [
   {
     label: "Email",
@@ -112,10 +116,11 @@ const Contacts = () => {
 
   return (
     <div
-      className="min-h-screen py-10 px-4 flex flex-col items-center
+      className="relative min-h-screen py-10 px-4 flex flex-col items-center
                  bg-gradient-to-br from-white via-gray-200 to-gray-400
                  dark:from-black dark:via-gray-800 dark:to-gray-900"
     >
+      <MarqueTechStack />
       <div className="text-center mb-8">
         <h1
           className="text-4xl md:text-5xl font-extrabold

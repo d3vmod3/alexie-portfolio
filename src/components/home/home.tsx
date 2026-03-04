@@ -6,36 +6,15 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { TextPlugin } from "gsap/TextPlugin";
+import MarqueTechStack from "@/components/ui/marquee-tech-stack";
 
 gsap.registerPlugin(useGSAP, TextPlugin);
 
-const techStack = [
-  "Bootstrap",
-  "CI/CD",
-  "CSS3",
-  "Docker",
-  "Figma",
-  "Git",
-  "GSAP",
-  "HTML5",
-  "JavaScript",
-  "Laravel",
-  "Livewire",
-  "Next.js",
-  "PostgreSQL",
-  "TailwindCSS",
-  "TypeScript",
-  "Vue JS",
-  "Wordpress",
-];
-
 export default function Home() {
-  const container = useRef<HTMLDivElement>(null);
   const textbox = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
   // const cursorRef = useRef<HTMLSpanElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const marqueeRefs = useRef<HTMLDivElement[]>([]);
 
   const quotes = [
     "&lt;p&gt;I build websites that people love to use.&lt;/p&gt;",
@@ -45,89 +24,54 @@ export default function Home() {
     "&lt;p&gt;I craft digital experiences, not just websites.&lt;/p&gt;",
   ];
 
-  useGSAP(
-    () => {
-      if (!textRef.current || !cardRef.current) return;
+  useGSAP(() => {
+    if (!textRef.current || !cardRef.current) return;
 
-      // Fade in card
-      gsap.from([cardRef.current, textbox.current], {
-        opacity: 0,
-        y: 50,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power3.out",
-      });
+    // Fade in card
+    gsap.from([cardRef.current, textbox.current], {
+      opacity: 0,
+      y: 50,
+      duration: 1.2,
+      stagger: 0.2,
+      ease: "power3.out",
+    });
 
-      // Floating profile card
-      const isDesktop = window.innerWidth >= 768; // md breakpoint
-      gsap.to(cardRef.current, {
-        y: -15,
-        rotate: isDesktop ? 3 : 0,
-        repeat: -1,
-        yoyo: true,
-        duration: 3,
-        ease: "sine.inOut",
-      });
+    // Floating profile card
+    const isDesktop = window.innerWidth >= 768; // md breakpoint
+    gsap.to(cardRef.current, {
+      y: -15,
+      rotate: isDesktop ? 3 : 0,
+      repeat: -1,
+      yoyo: true,
+      duration: 3,
+      ease: "sine.inOut",
+    });
 
-      // Blinking cursor
-      // gsap.fromTo(
-      //   cursorRef.current,
-      //   { autoAlpha: 0 },
-      //   { autoAlpha: 1, repeat: -1, yoyo: true, duration: 0.5 },
-      // );
+    // Blinking cursor
+    // gsap.fromTo(
+    //   cursorRef.current,
+    //   { autoAlpha: 0 },
+    //   { autoAlpha: 1, repeat: -1, yoyo: true, duration: 0.5 },
+    // );
 
-      // Typewriter animation
-      const tl = gsap.timeline({ repeat: -1 });
-      quotes.forEach((quote) => {
-        tl.to(textRef.current, { duration: 3, text: quote, ease: "none" }).to(
-          textRef.current,
-          { duration: 0.5, text: "", delay: 1 },
-        );
-      });
-
-      // Infinite marquee animation
-      marqueeRefs.current.forEach((el, i) => {
-        const isLeft = i % 2 === 0;
-        const startX = isLeft ? 0 : -el.scrollWidth / 2;
-        const endX = isLeft ? -el.scrollWidth / 2 : 0;
-
-        gsap.fromTo(
-          el,
-          { x: startX },
-          { x: endX, repeat: -1, ease: "linear", duration: 50 + i * 3 },
-        );
-      });
-    },
-    { scope: container },
-  );
+    // Typewriter animation
+    const tl = gsap.timeline({ repeat: -1 });
+    quotes.forEach((quote) => {
+      tl.to(textRef.current, { duration: 3, text: quote, ease: "none" }).to(
+        textRef.current,
+        { duration: 0.5, text: "", delay: 1 },
+      );
+    });
+  });
 
   return (
     <div
-      ref={container}
       className="relative min-h-screen flex justify-center items-center overflow-hidden
                  bg-gradient-to-br from-white via-gray-200 to-gray-400
                  dark:from-black dark:via-gray-800 dark:to-gray-900"
     >
-      {/* Tech Marquee: 7 rows */}
-      <div className="absolute inset-0 flex flex-col justify-around space-y-4 overflow-hidden pointer-events-none z-0">
-        {[0, 1, 2, 3, 4, 5, 6].map((row) => (
-          <div
-            key={row}
-            ref={(el) => {
-              if (el) marqueeRefs.current[row] = el;
-            }}
-            className={`flex space-x-12 whitespace-nowrap font-bold select-none
-                        text-gray-700/20 dark:text-gray-500/20
-                        ${row % 3 === 0 ? "text-xl md:text-3xl" : row % 3 === 1 ? "text-2xl md:text-4xl" : "text-lg md:text-2xl"}`}
-          >
-            {[...techStack, ...techStack].map((tech, i) => (
-              <span key={i}>{tech}</span>
-            ))}
-          </div>
-        ))}
-      </div>
-
       {/* Foreground Content */}
+      <MarqueTechStack />
       <div className="relative z-10 flex flex-col md:flex-row items-center space-x-8">
         {/* Left text */}
         <div className="flex flex-col order-1 md:order-0 items-center md:items-start space-y-4 ml-6 md:ml-0 mt-10 md:mt-0">

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import MarqueTechStack from "@/components/ui/marquee-tech-stack";
 import { Card } from "@/components/ui/card";
 
 const infoCards = [
@@ -104,10 +105,11 @@ const About = () => {
 
   return (
     <div
-      className="min-h-screen py-10 px-4 flex flex-col items-center
+      className="relative min-h-screen py-10 px-4 flex flex-col items-center
                  bg-gradient-to-br from-white via-gray-200 to-gray-400
                  dark:from-black dark:via-gray-800 dark:to-gray-900"
     >
+      <MarqueTechStack />
       <div className="text-center mb-8">
         <h1
           className="text-4xl md:text-5xl font-extrabold
