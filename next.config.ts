@@ -1,27 +1,23 @@
-import type { NextConfig } from "next";
-import withPWA from "next-pwa";
-import { join } from "path";
+import withPWAInit from "next-pwa";
+
 const isProduction = process.env.NODE_ENV === "production";
 
-// const nextConfig: NextConfig = {
-//   /* config options here */
-// };
+const withPWA = withPWAInit({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: !isProduction,
 
-export default withPWA({
-  dest: "public", // Service worker files will go here
-  register: true, // auto register service worker
-  skipWaiting: true, // activate new SW immediately
-  disable: !isProduction, // disable PWA in dev mode
-  // Optional: custom runtime caching
   runtimeCaching: [
     {
-      urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
+      // urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
+      urlPattern: /\/.*$/,
       handler: "CacheFirst",
       options: {
         cacheName: "google-fonts",
         expiration: {
           maxEntries: 4,
-          maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
+          maxAgeSeconds: 365 * 24 * 60 * 60,
         },
       },
     },
@@ -32,11 +28,15 @@ export default withPWA({
         cacheName: "jsdelivr",
         expiration: {
           maxEntries: 20,
-          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+          maxAgeSeconds: 30 * 24 * 60 * 60,
         },
       },
     },
   ],
 });
 
-// export default nextConfig;
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+export default withPWA(nextConfig);
