@@ -17,6 +17,8 @@ const techStack = [
   "Laravel",
   "Livewire",
   "Next.js",
+  "MSSQL",
+  "MySQL",
   "PostgreSQL",
   "TailwindCSS",
   "TypeScript",
