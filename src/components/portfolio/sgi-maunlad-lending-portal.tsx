@@ -18,11 +18,11 @@ const screenshots = [
     src: "/images/sgi-maunald-lending-portal-screenshots/login.png",
   },
   {
-    title: "Dashboard",
+    title: "Dashboard (Part 1)",
     src: "/images/sgi-maunald-lending-portal-screenshots/dashboard.png",
   },
   {
-    title: "Dashboard",
+    title: "Dashboard (Part 2)",
     src: "/images/sgi-maunald-lending-portal-screenshots/dashboard-counts.png",
   },
   {
