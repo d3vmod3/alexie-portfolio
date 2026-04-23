@@ -68,7 +68,8 @@ const infoCards = [
   },
   {
     label: "Highest Level of Education",
-    value: "BSc in Information Technology, St. Paul University Philippines",
+    value:
+      "Bachelor of Science in Information Technology, St. Paul University Philippines",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
