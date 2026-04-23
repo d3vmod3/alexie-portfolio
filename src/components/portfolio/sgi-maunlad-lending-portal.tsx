@@ -39,7 +39,7 @@ const screenshots = [
   },
   {
     title: "Due Loans",
-    src: "/images/sgi-maunald-lending-portal-screenshots/due-loans.png",
+    src: "/images/sgi-maunald-lending-portal-screenshots/dues.png",
   },
   {
     title: "Holidays",
