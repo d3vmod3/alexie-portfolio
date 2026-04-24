@@ -10,8 +10,7 @@ const withPWA = withPWAInit({
 
   runtimeCaching: [
     {
-      // urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
-      urlPattern: /\/.*$/,
+      urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
       handler: "CacheFirst",
       options: {
         cacheName: "google-fonts",
@@ -28,6 +27,18 @@ const withPWA = withPWAInit({
         cacheName: "jsdelivr",
         expiration: {
           maxEntries: 20,
+          maxAgeSeconds: 30 * 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      // Cache images only (safe)
+      urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/i,
+      handler: "CacheFirst",
+      options: {
+        cacheName: "images",
+        expiration: {
+          maxEntries: 50,
           maxAgeSeconds: 30 * 24 * 60 * 60,
         },
       },
