@@ -8,6 +8,7 @@ const techStack = [
   "Bootstrap",
   "CI/CD",
   "CSS3",
+  "Cypress",
   "Docker",
   "Figma",
   "Git",
