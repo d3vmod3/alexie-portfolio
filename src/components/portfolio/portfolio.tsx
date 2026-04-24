@@ -43,7 +43,7 @@ const projects = [
     href: "./portfolio/ronlapor",
   },
   {
-    title: "SGI - Maunlad Lending Porta",
+    title: "SGI - Maunlad Lending Portal",
     subtitle: "Deployed Locally",
     tools: ["Laravel", "Livewire", "Flux UI", "MySQL"],
     href: "./portfolio/sgi-maunlad-lending-portal",
