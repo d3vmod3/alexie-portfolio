@@ -33,7 +33,7 @@ const contactCards = [
   },
   {
     label: "Phone",
-    value: "+63 9672 815 421",
+    value: "+63 9273 6319 041",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
