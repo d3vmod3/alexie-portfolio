@@ -37,7 +37,7 @@ const projects = [
     href: "https://book.philippines-hoho.ph/",
   },
   {
-    title: "RONLapor - CMS",
+    title: "RONLapor - Admin Panel for RONLapor Mobile App",
     subtitle: "Archived",
     tools: ["Docker", "Laravel", "Livewire", "MySQL"],
     href: "./portfolio/ronlapor",
