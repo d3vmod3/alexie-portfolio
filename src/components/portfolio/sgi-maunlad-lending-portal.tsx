@@ -95,10 +95,13 @@ const SgiMaunladLendingPortalComponent = () => {
           SGI Maunlad Lending Portal
         </h1>
         <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
-          A website for SGI Maunlad Micro Lending Corp., built with Laravel,
-          Livewire, Flux UI, and MySQL. It features a responsive design,
-          user-friendly interface, and robust functionality to manage loans,
-          clients, schedules, and more.
+          A web-based system developed for SGI Maunlad Micro Lending Corp. using
+          Laravel, Livewire, Flux UI, and MySQL. The platform features a
+          responsive and user-friendly interface designed to efficiently manage
+          loans, clients, payment schedules, and other core lending operations.
+          The project also integrates ZeroTier to provide secure remote access
+          and seamless connectivity for authorized users accessing the system
+          outside the office network.
         </p>
         <div className="mt-4 flex justify-center flex-wrap gap-2">
           {["Laravel", "Livewire", "MySQL"].map((tech, idx) => (

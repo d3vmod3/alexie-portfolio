@@ -25,6 +25,12 @@ const projects = [
     href: "./portfolio/goldenpress",
   },
   {
+    title: "Jia's Internet",
+    subtitle: "Deployed Locally",
+    tools: ["Laravel", "Livewire", "Flux UI, MySQL"],
+    href: "./portfolio/jia-internet",
+  },
+  {
     title: "Living Pianos",
     subtitle: "Archived",
     tools: ["Docker", "Next.js"],
