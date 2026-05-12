@@ -11,6 +11,7 @@ const techStack = [
   "Cypress",
   "Docker",
   "Figma",
+  "Flux UI",
   "Git",
   "GSAP",
   "HTML5",

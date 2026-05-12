@@ -1,5 +1,8 @@
 "use client";
 
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
 import {
   Dialog,
   DialogTrigger,
@@ -8,48 +11,47 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import Image from "next/image";
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
 
 const screenshots = [
   {
     title: "Dashboard",
-    src: "/images/jia-internet-screenshots/dashboard.jpeg",
+    src: "/images/jia-internet/dashboard.jpeg",
   },
   {
     title: "Expenses",
-    src: "/images/jia-internet-screenshots/expenses.jpeg",
+    src: "/images/jia-internet/expenses.jpeg",
   },
   {
     title: "Payments",
-    src: "/images/jia-internet-screenshots/payments.jpeg",
+    src: "/images/jia-internet/payments.jpeg",
   },
   {
     title: "Add Payment",
-    src: "/images/jia-internet-screenshots/add-payments.jpeg",
+    src: "/images/jia-internet/add-payment.jpeg",
   },
   {
     title: "Subscribers",
-    src: "/images/jia-internet-screenshots/subscribers.jpeg",
+    src: "/images/jia-internet/subscribers.jpeg",
   },
   {
     title: "Subscriptions",
-    src: "/images/jia-internet-screenshots/subscriptions.jpeg",
+    src: "/images/jia-internet/subscriptions.jpeg",
   },
   {
     title: "Billings",
-    src: "/images/jia-internet-screenshots/subscriber-billings.jpeg",
+    src: "/images/jia-internet/subscriber-billings.jpeg",
   },
   {
     title: "Billings(PDF)",
-    src: "/images/jia-internet-screenshots/bllings-pdf.jpeg",
+    src: "/images/jia-internet/billing-pdf.jpeg",
   },
 ];
 
-const JiaInternet = () => {
+const JiaInternetComponent = () => {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
+    // Initial entrance animation
     const ctx = gsap.context(() => {
       gsap.from(cardsRef.current, {
         opacity: 0,
@@ -59,9 +61,12 @@ const JiaInternet = () => {
         ease: "power2.out",
       });
     });
+
+    // Cleanup
     return () => ctx.revert();
   }, []);
 
+  // Hover scale using GSAP
   const handleHover = (idx: number, enter: boolean) => {
     gsap.to(cardsRef.current[idx], {
       scale: enter ? 1.05 : 1,
@@ -83,9 +88,9 @@ const JiaInternet = () => {
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"
         >
-          GoldenPress
+          Jia&apos; Internet
         </h1>
-        <span className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
+        <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
           A business based in Gattaran, Cagayan, specializing in P2P services
           and operations. The project is deployed locally within the
           company&apos;s infrastructure and utilizes ZeroTier to enable secure
@@ -93,64 +98,64 @@ const JiaInternet = () => {
           premises. This setup ensures reliable communication, seamless access
           to internal resources, and efficient management of business operations
           from different locations.
-        </span>
-
-        {/* Tools Badge */}
+        </p>
         <div className="mt-4 flex justify-center flex-wrap gap-2">
-          <span className="font-bold rounded-md border px-2 py-1 bg-white/20 dark:bg-black/20 text-gray-800 dark:text-gray-200">
-            Wordpress
-          </span>
+          {["Laravel", "Livewire", "MySQL"].map((tech, idx) => (
+            <span
+              key={idx}
+              className="font-bold rounded-md border px-2 py-1 bg-white/20 dark:bg-black/20 text-gray-800 dark:text-gray-200"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
 
       {/* Screenshots Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-5xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl">
         {screenshots.map((item, idx) => (
-          <div
+          <Card
             key={idx}
             ref={(el) => {
               if (el) cardsRef.current[idx] = el;
             }}
-            className="card-item opacity-90 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 rounded-lg shadow-lg p-4"
+            className="card-item opacity-90 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 shadow-lg"
             onMouseEnter={() => handleHover(idx, true)}
             onMouseLeave={() => handleHover(idx, false)}
           >
-            <h2 className="text-center font-semibold">{item.title}</h2>
-
-            <Dialog>
-              <DialogTrigger className="w-full mt-2 flex justify-center">
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={item.title === "Mobile View" ? 300 : 1000}
-                  height={item.title === "Mobile View" ? 300 : 1000}
-                  className="hover:cursor-pointer rounded-lg"
-                />
-              </DialogTrigger>
-              <DialogContent
-                className={
-                  item.title === "Mobile View"
-                    ? "sm:max-w-md h-screen"
-                    : "sm:max-w-7xl"
-                }
-              >
-                <DialogHeader>
-                  <DialogTitle>{item.title}</DialogTitle>
-                </DialogHeader>
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={item.title === "Mobile View" ? 300 : 1000}
-                  height={item.title === "Mobile View" ? 300 : 1000}
-                  className="w-full rounded-lg"
-                />
-              </DialogContent>
-            </Dialog>
-          </div>
+            <CardHeader>
+              <CardTitle className="text-center">{item.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex justify-center">
+              <Dialog>
+                <DialogTrigger>
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    width={1000}
+                    height={1000}
+                    className="hover:cursor-pointer rounded-lg"
+                  />
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-7xl">
+                  <DialogHeader>
+                    <DialogTitle>{item.title}</DialogTitle>
+                  </DialogHeader>
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    width={1000}
+                    height={1000}
+                    className="w-full rounded-lg"
+                  />
+                </DialogContent>
+              </Dialog>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </div>
   );
 };
 
-export default JiaInternet;
+export default JiaInternetComponent;
