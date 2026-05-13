@@ -83,7 +83,7 @@ const JiaInternetComponent = () => {
     >
       <div className="text-center mb-8">
         <h1
-          className="text-4xl md:text-5xl font-extrabold
+          className="text-4xl md:text-6xl font-extrabold
                      bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"

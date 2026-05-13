@@ -61,7 +61,7 @@ const MarqueTechStack = () => {
             if (el) marqueeRefs.current[row] = el;
           }}
           className={`flex space-x-12 whitespace-nowrap font-bold select-none
-                        text-gray-700/15 dark:text-gray-500/60
+                        text-gray-700/10 dark:text-gray-500/10
                         ${row % 3 === 0 ? "text-xl md:text-3xl" : row % 3 === 1 ? "text-2xl md:text-4xl" : "text-lg md:text-2xl"}`}
         >
           {[...techStack, ...techStack].map((tech, i) => (
