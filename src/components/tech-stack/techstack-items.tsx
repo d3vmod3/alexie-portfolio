@@ -53,7 +53,7 @@ const TechStackItems = () => {
   return (
     <div>
       {/* Responsive grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-2 lg:gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-2 lg:gap-2">
         {items.map((item, index) => (
           <div
             key={index}
@@ -66,7 +66,7 @@ const TechStackItems = () => {
           >
             <StackIcon
               name={item.name}
-              className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
+              className="min-w-20 min-h-20 w-24 h-24"
             />
           </div>
         ))}
@@ -80,7 +80,7 @@ const TechStackItems = () => {
           onMouseEnter={() => handleHover(18, true)}
           onMouseLeave={() => handleHover(18, false)}
         >
-          <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex items-center justify-center">
+          <div className="min-w-20 min-h-20 w-24 h-24 flex items-center justify-center">
             <FluxUI />
           </div>
         </div>
@@ -97,7 +97,7 @@ const TechStackItems = () => {
           <Image
             src={MSSql}
             alt="Microsoft SQL Server"
-            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
+            className="min-w-20 min-h-20 w-24 h-24 object-contain"
           />
         </div>
 
@@ -113,7 +113,7 @@ const TechStackItems = () => {
           <Image
             src={Livewire}
             alt="Livewire"
-            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
+            className="min-w-20 min-h-20 w-24 h-24 object-contain"
           />
         </div>
       </div>
