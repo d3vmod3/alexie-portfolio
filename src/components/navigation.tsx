@@ -24,6 +24,10 @@ const navigationData = [
     href: "/portfolio",
   },
   {
+    title: "Tech Stack",
+    href: "/tech-stack",
+  },
+  {
     title: "About",
     href: "/about",
   },
@@ -44,18 +48,16 @@ const Navbar = () => {
           Alexie Tuzon
         </Link>
         <div className="text-muted-foreground flex items-center gap-8 font-medium md:justify-center lg:gap-16">
-          <Link className="hover:text-primary max-md:hidden" href="/">
-            Home
-          </Link>
-          <Link className="hover:text-primary max-md:hidden" href="/portfolio">
-            Portfolio
-          </Link>
-          <Link className="hover:text-primary max-md:hidden" href="/about">
-            About
-          </Link>
-          <Link className="hover:text-primary max-md:hidden" href="/contacts">
-            Contacts
-          </Link>
+          {navigationData.map((item, index) => (
+            <Link
+              key={index}
+              className="hover:text-primary max-md:hidden"
+              href={item.href}
+            >
+              {item.title}
+            </Link>
+          ))}
+
           <Link
             href="./Alexie_Tuzon_Resume.pdf"
             target="_blank"
