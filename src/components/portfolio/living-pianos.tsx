@@ -61,16 +61,19 @@ const LivingPianos = () => {
     >
       <div className="text-center mb-8">
         <h1
-          className="text-4xl md:text-6xl font-extrabold
+          className="text-4xl py-4 md:text-6xl font-extrabold
                      bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"
         >
           Living Pianos
         </h1>
-        <span className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
-          The World&apos;s 1st Online Piano Store
-        </span>
+        <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
+          A web-based e-commerce concept for a piano store featuring a modern
+          product showcase, responsive UI, and structured product browsing
+          experience. Built with a focus on clean design, performance, and user
+          experience.
+        </p>
 
         {/* Tools / Framework badges */}
         <div className="mt-4 flex justify-center flex-wrap gap-2">

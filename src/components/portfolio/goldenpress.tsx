@@ -54,16 +54,19 @@ const GoldenPress = () => {
     >
       <div className="text-center mb-8">
         <h1
-          className="text-4xl md:text-6xl font-extrabold
+          className="text-4xl py-4 md:text-6xl font-extrabold
                      bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"
         >
           GoldenPress
         </h1>
-        <span className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
-          A company specialized in high-quality printing solutions
-        </span>
+        <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
+          A WordPress-based corporate website developed for GoldenPress, a
+          printing solutions company. The site was customized to present
+          services, company branding, and contact information in a clean and
+          responsive layout optimized for user experience.
+        </p>
 
         {/* Tools Badge */}
         <div className="mt-4 flex justify-center flex-wrap gap-2">

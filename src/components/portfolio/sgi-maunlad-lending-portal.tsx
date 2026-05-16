@@ -87,7 +87,7 @@ const SgiMaunladLendingPortalComponent = () => {
     >
       <div className="text-center mb-8">
         <h1
-          className="text-4xl md:text-6xl font-extrabold
+          className="text-4xl py-4 md:text-6xl font-extrabold
                      bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"
@@ -95,13 +95,16 @@ const SgiMaunladLendingPortalComponent = () => {
           SGI Maunlad Lending Portal
         </h1>
         <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
-          A web-based system developed for SGI Maunlad Micro Lending Corp. using
-          Laravel, Livewire, Flux UI, and MySQL. The platform features a
-          responsive and user-friendly interface designed to efficiently manage
-          loans, clients, payment schedules, and other core lending operations.
-          The project also integrates ZeroTier to provide secure remote access
-          and seamless connectivity for authorized users accessing the system
-          outside the office network.
+          A web-based loan management system developed for SGI Maunlad Micro
+          Lending Corp. using Laravel, Livewire, Flux UI, and MySQL. The system
+          was designed to streamline and digitize core lending operations such
+          as client management, loan processing, payment scheduling, and record
+          tracking, replacing manual and fragmented workflows. It features a
+          responsive and user-friendly interface for staff to efficiently manage
+          daily operations and reduce administrative workload. To support secure
+          remote access, the system integrates ZeroTier, enabling authorized
+          users to safely access the platform outside the office network without
+          exposing internal infrastructure.
         </p>
         <div className="mt-4 flex justify-center flex-wrap gap-2">
           {["Laravel", "Livewire", "MySQL"].map((tech, idx) => (

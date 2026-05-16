@@ -83,7 +83,7 @@ const JiaInternetComponent = () => {
     >
       <div className="text-center mb-8">
         <h1
-          className="text-4xl md:text-6xl font-extrabold
+          className="text-4xl py-4 md:text-6xl font-extrabold
                      bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"
@@ -91,13 +91,14 @@ const JiaInternetComponent = () => {
           Jia&apos; Internet
         </h1>
         <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
-          A business based in Gattaran, Cagayan, specializing in P2P services
-          and operations. The project is deployed locally within the
-          company&apos;s infrastructure and utilizes ZeroTier to enable secure
-          remote connectivity for users accessing the system outside the office
-          premises. This setup ensures reliable communication, seamless access
-          to internal resources, and efficient management of business operations
-          from different locations.
+          A web-based internal operations system developed for a P2P services
+          business in Gattaran, Cagayan. The platform centralizes business
+          operations and data management, allowing users to efficiently handle
+          and monitor internal processes from multiple locations. The system is
+          deployed within the company&apos;s infrastructure and uses ZeroTier to
+          enable secure remote access for authorized users outside the office
+          network, ensuring reliable connectivity and protected internal
+          communication.
         </p>
         <div className="mt-4 flex justify-center flex-wrap gap-2">
           {["Laravel", "Livewire", "MySQL"].map((tech, idx) => (

@@ -60,7 +60,7 @@ const ForexCargo = () => {
     >
       <div className="text-center mb-8">
         <h1
-          className="text-4xl md:text-6xl font-extrabold
+          className="text-4xl py-4 md:text-6xl font-extrabold
                      bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"
@@ -68,14 +68,15 @@ const ForexCargo = () => {
           Forex Cargo US
         </h1>
         <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
-          An admin website of{" "}
-          <a
-            href="https://forexeship.com/"
-            className="underline hover:cursor-pointer text-blue-600 dark:text-blue-400"
-            target="_blank"
-          >
-            Forex Eship
-          </a>
+          Contributed to the development and maintenance of enterprise backend
+          modules for Forex Cargo US company systems, focusing on security
+          enforcement and automated communication workflows. Implemented a
+          Blacklist system that restricts access for flagged users at the
+          authentication level, preventing login and platform usage across all
+          services. Built and maintained a Bulk SMS automation module that
+          schedules and dispatches time-based notifications and service updates
+          to users via SMS, improving communication efficiency and operational
+          consistency.
         </p>
         <div className="mt-4 flex justify-center flex-wrap gap-2">
           {["Laravel", "Livewire", "MySQL"].map((tech, idx) => (

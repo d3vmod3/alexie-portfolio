@@ -61,7 +61,7 @@ const Ronlapor = () => {
     >
       <div className="text-center mb-8">
         <h1
-          className="text-4xl md:text-6xl font-extrabold
+          className="text-4xl py-4 md:text-6xl font-extrabold
                      bg-gradient-to-r from-gray-700 via-gray-400 to-gray-400
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"
@@ -69,8 +69,13 @@ const Ronlapor = () => {
           RONLapor CMS
         </h1>
         <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
-          A Content Management System designed to get all report instances of
-          fuel retail abuses in Malaysia.
+          A content management system designed to collect, organize, and manage
+          reports related to fuel retail irregularities in Malaysia. The
+          platform allows users to submit incident reports, while administrators
+          can review, categorize, and manage submitted cases through a
+          centralized dashboard. It provides structured data handling for
+          tracking reports efficiently and improving visibility of reported
+          incidents.
         </p>
 
         <div className="mt-4 flex justify-center flex-wrap gap-2">
