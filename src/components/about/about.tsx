@@ -28,45 +28,6 @@ const infoCards = [
     ),
   },
   {
-    label: "Gender",
-    value: "Male",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className="w-12 h-12"
-      >
-        <path
-          fillRule="evenodd"
-          d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8"
-        />
-      </svg>
-    ),
-  },
-  {
-    label: "Birthdate",
-    value: "July 11, 1996",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className="w-12 h-12"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513"
-        />
-      </svg>
-    ),
-  },
-  {
     label: "Highest Level of Education",
     value:
       "Bachelor of Science in Information Technology, St. Paul University Philippines",

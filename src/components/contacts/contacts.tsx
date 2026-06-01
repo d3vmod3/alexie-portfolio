@@ -53,8 +53,7 @@ const contactCards = [
   },
   {
     label: "Address",
-    value:
-      "Gonzaga Street Extension, Ugac Norte, Tuguegarao City, Cagayan 3500",
+    value: "Taguig City, Metro Manila, Philippines",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
