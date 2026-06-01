@@ -154,7 +154,7 @@ export default function Home() {
                      overflow-hidden transition-all duration-500 hover:w-96 hover:h-[600px] md:hover:w-[400px] md:hover:h-[650px]"
         >
           <Image
-            src="/images/profile-pic-3.jpg"
+            src="/images/profile-pic-2.jpg"
             width={384}
             height={500}
             alt="Profile"
