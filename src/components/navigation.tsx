@@ -59,7 +59,7 @@ const Navbar = () => {
           ))}
 
           <Link
-            href="./Alexie_Tuzon_Resume.pdf"
+            href="/Alexie_Tuzon_Resume.pdf"
             target="_blank"
             className="cursor-pointer flex justify-between items-end gap-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black p-2 rounded-lg "
           >
