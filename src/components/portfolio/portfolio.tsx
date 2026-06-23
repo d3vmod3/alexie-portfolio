@@ -20,6 +20,12 @@ const projects = [
     href: "./portfolio/forexcargo",
   },
   {
+    title: "Fitness Test",
+    subtitle: "Deployed Locally",
+    tools: ["Vue 3", "Laravel", "Tailwind (Daisy UI)", "MySQL"],
+    href: "./portfolio/fitness-test",
+  },
+  {
     title: "Golden Press",
     tools: ["Wordpress"],
     href: "./portfolio/goldenpress",
@@ -27,7 +33,7 @@ const projects = [
   {
     title: "Jia's Internet",
     subtitle: "Deployed Locally",
-    tools: ["Laravel", "Livewire", "Flux UI, MySQL"],
+    tools: ["Laravel", "Livewire", "Flux UI", "MySQL"],
     href: "./portfolio/jia-internet",
   },
   {
