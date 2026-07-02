@@ -23,13 +23,15 @@ const projects = [
     subtitle: "Enhanced",
     tools: ["Codeigniter"],
     href: "./portfolio/forexcargo",
+    object_position: "object-top",
   },
   {
     title: "Fitness Test",
-    featured_image: "/images/fitness-test/admin-dashboard.png",
+    featured_image: "/images/fitness-test/featured_image.png",
     subtitle: "Deployed Locally",
     tools: ["Vue 3", "Laravel", "Tailwind (Daisy UI)", "MySQL"],
     href: "./portfolio/fitness-test",
+    object_position: "object-[25%_20%]",
   },
   {
     title: "Golden Press",
@@ -37,13 +39,15 @@ const projects = [
     subtitle: "Archived",
     tools: ["Wordpress"],
     href: "./portfolio/goldenpress",
+    object_position: "object-[25%_60%]",
   },
   {
     title: "Jia's Internet",
-    featured_image: "/images/jia-internet/dashboard.jpeg",
+    featured_image: "/images/jia-internet/featured_image.png",
     subtitle: "Deployed Locally",
     tools: ["Laravel", "Livewire", "Flux UI", "MySQL"],
     href: "./portfolio/jia-internet",
+    object_position: "object-[25%_25%]",
   },
   {
     title: "Living Pianos",
@@ -51,13 +55,15 @@ const projects = [
     subtitle: "Archived",
     tools: ["Docker", "Next.js"],
     href: "./portfolio/living-pianos",
+    object_position: "object-center",
   },
   {
     title: "Love PH",
-    featured_image: "/logo-alexie.png",
+    featured_image: "/images/love-ph/featured_image.png",
     subtitle: "Archived",
     tools: ["Next.js"],
     href: "https://book.philippines-hoho.ph/",
+    object_position: "object-top",
   },
   {
     title: "RONLapor - Admin Panel for RONLapor Mobile App",
@@ -65,14 +71,16 @@ const projects = [
     subtitle: "Archived",
     tools: ["Docker", "Laravel", "Livewire", "MySQL"],
     href: "./portfolio/ronlapor",
+    object_position: "object-[25%_50%]",
   },
   {
     title: "SGI - Maunlad Lending Portal",
     featured_image:
-      "/images/sgi-maunald-lending-portal-screenshots/clients.png",
+      "/images/sgi-maunald-lending-portal-screenshots/featured_image.jpg",
     subtitle: "Deployed Locally",
     tools: ["Laravel", "Livewire", "Flux UI", "MySQL"],
     href: "./portfolio/sgi-maunlad-lending-portal",
+    object_position: "object-center",
   },
   {
     title: "Soros Security Consulting",
@@ -80,6 +88,7 @@ const projects = [
     featured_image: "/images/soros-security-consulting/landing-page.png",
     tools: ["Docker", "Next.js"],
     href: "https://sorosservices.com/",
+    object_position: "object-top",
   },
 ];
 
@@ -135,14 +144,13 @@ const Portfolio = () => {
             className="relative pt-0 rounded-b-none border opacity-90 hover:opacity-100 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 transition-transform duration-500 hover:scale-105 shadow-lg"
           >
             <div className="absolute inset-0 z-30 aspect-video" />
-
             <img
               src={project.featured_image}
               alt="featured image"
               // height={300}
               // width={300}
               // quality={50}
-              className="relative rounded-t-lg z-20 aspect-video w-full object-cover"
+              className={`relative h-42 rounded-t-lg z-20 aspect-video w-full object-cover ${project.object_position}`}
             />
             <CardHeader>
               <CardAction>
