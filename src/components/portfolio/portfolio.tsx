@@ -1,67 +1,83 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
   CardFooter,
+  CardAction,
+  // CardDescription,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
+// import Image from "next/image";
 import gsap from "gsap";
 
 const projects = [
   {
     title: "Forex Cargo US",
+    featured_image: "/images/forex-cargo-screenshots/blacklist-customer.png",
     subtitle: "Enhanced",
     tools: ["Codeigniter"],
     href: "./portfolio/forexcargo",
   },
   {
     title: "Fitness Test",
+    featured_image: "/images/fitness-test/admin-dashboard.png",
     subtitle: "Deployed Locally",
     tools: ["Vue 3", "Laravel", "Tailwind (Daisy UI)", "MySQL"],
     href: "./portfolio/fitness-test",
   },
   {
     title: "Golden Press",
+    featured_image: "/images/goldenpress-screenshots/goldenpress-web.jpg",
+    subtitle: "Archived",
     tools: ["Wordpress"],
     href: "./portfolio/goldenpress",
   },
   {
     title: "Jia's Internet",
+    featured_image: "/images/jia-internet/dashboard.jpeg",
     subtitle: "Deployed Locally",
     tools: ["Laravel", "Livewire", "Flux UI", "MySQL"],
     href: "./portfolio/jia-internet",
   },
   {
     title: "Living Pianos",
+    featured_image: "/images/living-pianos-screenshots/sign-in.png",
     subtitle: "Archived",
     tools: ["Docker", "Next.js"],
     href: "./portfolio/living-pianos",
   },
   {
     title: "Love PH",
+    featured_image: "/logo-alexie.png",
     subtitle: "Archived",
     tools: ["Next.js"],
     href: "https://book.philippines-hoho.ph/",
   },
   {
     title: "RONLapor - Admin Panel for RONLapor Mobile App",
+    featured_image: "/images/ronlapor-cms-screenshots/login.png",
     subtitle: "Archived",
     tools: ["Docker", "Laravel", "Livewire", "MySQL"],
     href: "./portfolio/ronlapor",
   },
   {
     title: "SGI - Maunlad Lending Portal",
+    featured_image:
+      "/images/sgi-maunald-lending-portal-screenshots/clients.png",
     subtitle: "Deployed Locally",
     tools: ["Laravel", "Livewire", "Flux UI", "MySQL"],
     href: "./portfolio/sgi-maunlad-lending-portal",
   },
   {
     title: "Soros Security Consulting",
+    subtitle: "Live",
+    featured_image: "/images/soros-security-consulting/landing-page.png",
     tools: ["Docker", "Next.js"],
     href: "https://sorosservices.com/",
   },
@@ -116,16 +132,24 @@ const Portfolio = () => {
             ref={(el) => {
               if (el) cardsRef.current[idx] = el;
             }}
-            className="opacity-90 hover:opacity-100 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 transition-transform duration-500 hover:scale-105 shadow-lg"
+            className="relative pt-0 rounded-b-none border opacity-90 hover:opacity-100 bg-white/10 dark:bg-black/20 text-gray-800 dark:text-gray-200 transition-transform duration-500 hover:scale-105 shadow-lg"
           >
+            <div className="absolute inset-0 z-30 aspect-video" />
+
+            <img
+              src={project.featured_image}
+              alt="featured image"
+              // height={300}
+              // width={300}
+              // quality={50}
+              className="relative rounded-t-lg z-20 aspect-video w-full object-cover"
+            />
             <CardHeader>
+              <CardAction>
+                <Badge>{project.subtitle}</Badge>
+              </CardAction>
               <CardTitle className="flex items-center justify-between">
                 {project.title}
-                {project.subtitle && (
-                  <span className="text-xs italic text-gray-500 dark:text-gray-400">
-                    ({project.subtitle})
-                  </span>
-                )}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -142,7 +166,7 @@ const Portfolio = () => {
               </div>
             </CardContent>
             <CardFooter className="justify-center">
-              <Button asChild className="w-full sm:w-auto mt-2">
+              <Button asChild className="w-full">
                 <Link href={project.href} target="_blank">
                   View
                 </Link>
