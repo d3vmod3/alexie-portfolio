@@ -84,10 +84,6 @@ const TechStackItems = () => {
             onMouseLeave={() => handleHover(index, false)}
             className={itemsClass}
           >
-            <StackIcon
-              name={item.name}
-              className="min-w-20 min-h-20 w-24 h-24"
-            />
             <p className="mt-3 text-sm font-medium capitalize">
               {item.name === "nextjs"
                 ? "Next.js"
@@ -99,6 +95,11 @@ const TechStackItems = () => {
                       ? "HTML5"
                       : item.name}
             </p>
+            <StackIcon
+              name={item.name}
+              className="min-w-20 min-h-20 w-24 h-24"
+            />
+
             {item.learning && (
               <div className="mt-3">
                 <div className="flex justify-between text-xs italic">
