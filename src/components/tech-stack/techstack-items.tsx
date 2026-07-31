@@ -10,17 +10,18 @@ const TechStackItems = () => {
   const items = [
     { name: "bootstrap5" },
     { name: "css3" },
-    { name: "cypress" },
+    { name: "cypress", learning: true },
     { name: "docker" },
     { name: "figma" },
+    { name: "flutter", learning: true },
     { name: "git" },
-    { name: "gsap" },
+    { name: "gsap", learning: true },
     { name: "html5" },
     { name: "js" },
     { name: "laravel" },
     { name: "nextjs" },
     { name: "mysql" },
-    { name: "postgresql" },
+    { name: "postgresql", learning: true },
     { name: "tailwindcss" },
     { name: "typescript" },
     { name: "vuejs" },
@@ -28,6 +29,9 @@ const TechStackItems = () => {
   ];
 
   const itemsRef = useRef<HTMLDivElement[]>([]);
+  const progressRefs = useRef<HTMLDivElement[]>([]);
+  const itemsClass =
+    "flex flex-col items-center justify-center rounded-lg p-3 sm:p-4 bg-white/10 dark:bg-white/20 backdrop-blur-xs rounded-xl p-6 shadow-lg";
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (!itemsRef.current) return;
@@ -38,6 +42,22 @@ const TechStackItems = () => {
         stagger: 0.1,
         ease: "power2.out",
       });
+      gsap.fromTo(
+        progressRefs.current,
+        {
+          x: -20,
+          opacity: 0,
+        },
+        {
+          x: 70, // adjust depending on your progress width
+
+          opacity: 1,
+          duration: 1,
+          ease: "none",
+          repeat: -1,
+          repeatDelay: 0.6,
+        },
+      );
     });
 
     return () => ctx.revert(); // clean up on unmount
@@ -45,7 +65,7 @@ const TechStackItems = () => {
 
   const handleHover = (idx: number, enter: boolean) => {
     gsap.to(itemsRef.current[idx], {
-      scale: enter ? 1.65 : 1,
+      scale: enter ? 1.05 : 1,
       duration: 0.4,
       ease: "power2.out",
     });
@@ -53,7 +73,7 @@ const TechStackItems = () => {
   return (
     <div>
       {/* Responsive grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-2 lg:gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-2 lg:gap-4">
         {items.map((item, index) => (
           <div
             key={index}
@@ -62,24 +82,54 @@ const TechStackItems = () => {
             }}
             onMouseEnter={() => handleHover(index, true)}
             onMouseLeave={() => handleHover(index, false)}
-            className="flex items-center justify-center rounded-lg p-3 sm:p-4 dark:bg-white/70"
+            className={itemsClass}
           >
             <StackIcon
               name={item.name}
               className="min-w-20 min-h-20 w-24 h-24"
             />
+            <p className="mt-3 text-sm font-medium capitalize">
+              {item.name === "nextjs"
+                ? "Next.js"
+                : item.name === "js"
+                  ? "JavaScript"
+                  : item.name === "css3"
+                    ? "CSS3"
+                    : item.name === "html5"
+                      ? "HTML5"
+                      : item.name}
+            </p>
+            {item.learning && (
+              <div className="mt-3">
+                <div className="flex justify-between text-xs italic">
+                  <span>Learning</span>
+                </div>
+
+                <div className="relative mt-1 h-1 overflow-hidden rounded-full bg-neutral-700">
+                  <div className="relative h-full w-2/5 rounded-full bg-sky-500">
+                    <div
+                      ref={(el) => {
+                        if (el) progressRefs.current[index] = el;
+                      }}
+                      className="absolute top-0 h-full w-4 bg-white/80 blur-[2px]"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         ))}
 
         {/* Flux UI */}
         <div
-          className="flex items-center justify-center rounded-lg p-3 sm:p-4 dark:bg-white/70"
+          className={itemsClass}
           ref={(el) => {
             if (el) itemsRef.current[18] = el;
           }}
           onMouseEnter={() => handleHover(18, true)}
           onMouseLeave={() => handleHover(18, false)}
         >
+          <p className="mt-3 text-sm font-medium capitalize">Flux UI</p>
           <div className="min-w-20 min-h-20 w-24 h-24 flex items-center justify-center">
             <FluxUI />
           </div>
@@ -87,13 +137,14 @@ const TechStackItems = () => {
 
         {/* MSSQL */}
         <div
-          className="flex items-center justify-center rounded-lg p-3 sm:p-4 dark:bg-white/70"
+          className={itemsClass}
           ref={(el) => {
             if (el) itemsRef.current[19] = el;
           }}
           onMouseEnter={() => handleHover(19, true)}
           onMouseLeave={() => handleHover(19, false)}
         >
+          <p className="mt-3 text-sm font-medium capitalize">MS SQL</p>
           <Image
             src={MSSql}
             alt="Microsoft SQL Server"
@@ -103,13 +154,14 @@ const TechStackItems = () => {
 
         {/* Livewire */}
         <div
-          className="flex items-center justify-center rounded-lg p-3 sm:p-4 dark:bg-white/70"
+          className={itemsClass}
           ref={(el) => {
             if (el) itemsRef.current[20] = el;
           }}
           onMouseEnter={() => handleHover(20, true)}
           onMouseLeave={() => handleHover(20, false)}
         >
+          <p className="mt-3 text-sm font-medium capitalize">Livewire</p>
           <Image
             src={Livewire}
             alt="Livewire"

@@ -6,7 +6,7 @@ import MarqueTechStack from "@/components/ui/marquee-tech-stack";
 const TechStack = () => {
   return (
     <div
-      className="relative min-h-screen py-10 px-4 flex flex-col items-center
+      className="relative min-h-screen  py-10 px-4 flex flex-col items-center
                  bg-gradient-to-br from-white via-gray-200 to-gray-400
                  dark:from-black dark:via-gray-800 dark:to-gray-900"
     >
@@ -21,7 +21,7 @@ const TechStack = () => {
           Tech Stack
         </h1>
       </div>
-      <div className="w-full py-4 px-32">
+      <div className="w-full py-4 px-0 sm:px-32">
         <TechStackItems />
       </div>
     </div>
