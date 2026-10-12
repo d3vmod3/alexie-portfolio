@@ -66,6 +66,14 @@ const projects = [
     object_position: "object-top",
   },
   {
+    title: "Nuat Thai - Booking System",
+    featured_image: "/images/nuat-thai-tugue/featured_image.jpg",
+    subtitle: "Deployed Locally",
+    tools: ["Laravel", "Livewire", "Flux UI", "MySQL"],
+    href: "./portfolio/nuat-thai-tugue",
+    object_position: "object-top",
+  },
+  {
     title: "RONLapor - Admin Panel for RONLapor Mobile App",
     featured_image: "/images/ronlapor-cms-screenshots/login.png",
     subtitle: "Archived",
