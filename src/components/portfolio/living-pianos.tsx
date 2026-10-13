@@ -77,14 +77,16 @@ const LivingPianos = () => {
 
         {/* Tools / Framework badges */}
         <div className="mt-4 flex justify-center flex-wrap gap-2">
-          {["Docker", "Next JS"].map((tech, idx) => (
-            <span
-              key={idx}
-              className="font-bold rounded-md border px-2 py-1 bg-white/20 dark:bg-black/20 text-gray-800 dark:text-gray-200"
-            >
-              {tech}
-            </span>
-          ))}
+          {["Docker", "Next.js", "Typescript", "Tailwind CSS"].map(
+            (tech, idx) => (
+              <span
+                key={idx}
+                className="font-bold rounded-md border px-2 py-1 bg-white/20 dark:bg-black/20 text-gray-800 dark:text-gray-200"
+              >
+                {tech}
+              </span>
+            ),
+          )}
         </div>
       </div>
 
