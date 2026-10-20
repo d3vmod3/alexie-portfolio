@@ -88,7 +88,7 @@ const JiaInternetComponent = () => {
                      dark:from-gray-300 dark:via-white dark:to-gray-200
                      bg-clip-text text-transparent drop-shadow-md"
         >
-          Jia&apos; Internet
+          Jia&apos;s Internet
         </h1>
         <p className="mt-2 text-gray-800 dark:text-gray-200 text-lg md:text-xl">
           A web-based internal operations system developed for a P2P services
