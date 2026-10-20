@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import StackIcon from "tech-stack-icons";
 import FluxUI from "@/components/ui/logos/flux-ui";
@@ -10,23 +12,28 @@ const TechStackItems = () => {
   const items = [
     { name: "bootstrap5" },
     { name: "c#" },
+    { name: "clickup" },
     { name: "css3" },
     { name: "cypress", learning: true },
-    { name: "docker" },
+    { name: "docker", learning: true },
     { name: "figma" },
     { name: "flutter", learning: true },
     { name: "git" },
     { name: "gsap", learning: true },
     { name: "html5" },
+    { name: "jira" },
     { name: "js" },
     { name: "laravel" },
     { name: "nextjs" },
     { name: "mysql" },
+    { name: "photoshop" },
     { name: "postgresql", learning: true },
+    { name: "python", learning: true },
     { name: "tailwindcss" },
     { name: "typescript" },
     { name: "vuejs" },
     { name: "wordpress" },
+    { name: "zustand" },
   ];
 
   const itemsRef = useRef<HTMLDivElement[]>([]);
