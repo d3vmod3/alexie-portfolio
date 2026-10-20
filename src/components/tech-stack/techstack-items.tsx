@@ -9,6 +9,7 @@ import gsap from "gsap";
 const TechStackItems = () => {
   const items = [
     { name: "bootstrap5" },
+    { name: "c#" },
     { name: "css3" },
     { name: "cypress", learning: true },
     { name: "docker" },
